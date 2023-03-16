@@ -1,5 +1,8 @@
 import { auth } from '../js/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from 'firebase/auth';
 
 const userCreationFormEl = document.getElementById('userCreationForm');
 userCreationFormEl.addEventListener('submit', newUserRegistration);
@@ -13,6 +16,9 @@ async function newUserRegistration(e) {
       // Signed in
       const user = userCredential.user;
       console.log(user);
+      sendEmailVerification(auth.currentUser).then(() => {
+        console.log('Email verification sent!');
+      });
       // ...
     })
     .catch(error => {

@@ -1,10 +1,5 @@
-// Initialize Firebase
 import { auth } from '../js/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-
-// const app = initializeApp(firebaseConfig);
-// // Initialize Firebase Authentication and get a reference to the service
-// const auth = getAuth(app);
 
 const logInFormEl = document.getElementById('logInForm');
 logInFormEl.addEventListener('submit', userLogIn);
@@ -27,3 +22,19 @@ async function userLogIn(e) {
       console.log(errorMessage);
     });
 }
+
+function userCheck() {
+  const user = auth.currentUser;
+  console.log(user);
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    // ...
+    console.log('Hello' + user);
+  } else {
+    // No user is signed in.
+    console.log('You are not signed in.');
+  }
+}
+
+userCheck();

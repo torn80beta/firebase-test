@@ -1,24 +1,29 @@
-// // Import the functions you need from the SDKs you need
-// import { initializeApp } from 'firebase/app';
-// import {
-//   getAuth,
-//   createUserWithEmailAndPassword,
-//   signInWithEmailAndPassword,
-// } from 'firebase/auth';
+import { auth } from './js/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
-// // TODO: Add SDKs for Firebase products that you want to use
-// // https://firebase.google.com/docs/web/setup#available-libraries
-// // Your web app's Firebase configuration
-// const firebaseConfig = {
-//   apiKey: 'AIzaSyBSt5AK9ankO22Qk0ytWWjzBr4utQCOgH8',
-//   authDomain: 'fir-test-4ec8b.firebaseapp.com',
-//   projectId: 'fir-test-4ec8b',
-//   storageBucket: 'fir-test-4ec8b.appspot.com',
-//   messagingSenderId: '941413940221',
-//   appId: '1:941413940221:web:19b2f749a8bacf86113794',
-// };
+// onAuthStateChanged(auth, user => {
+//   if (user) {
+//     // User is signed in, see docs for a list of available properties
+//     // https://firebase.google.com/docs/reference/js/firebase.User
+//     const uid = user.uid;
+//     // ...
+//   } else {
+//     // User is signed out
+//     // ...
+//   }
+// });
 
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// // Initialize Firebase Authentication and get a reference to the service
-// const auth = getAuth(app);
+function userCheck() {
+  const user = auth.currentUser;
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    // ...
+    console.log('Hello' + user);
+  } else {
+    // No user is signed in.
+    console.log('You are not signed in.');
+  }
+}
+
+userCheck();

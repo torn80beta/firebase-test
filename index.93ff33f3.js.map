@@ -1,1 +1,0 @@
-{"mappings":"qeACA,EADAA,EAAA,SACAC","sources":["src/index.js"],"sourcesContent":["import { monitorAuthState } from './js/ui';\nmonitorAuthState();\n"],"names":["parcelRequire","monitorAuthState"],"version":3,"file":"index.93ff33f3.js.map"}

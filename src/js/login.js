@@ -4,10 +4,7 @@ import { monitorAuthState } from './ui';
 import { async } from '@firebase/util';
 
 const logInFormEl = document.getElementById('logInForm');
-const logoutButton = document.getElementById('logout');
-
 logInFormEl.addEventListener('submit', userLogIn);
-logoutButton.addEventListener('click', onLogout);
 
 async function userLogIn(e) {
   e.preventDefault();
@@ -23,10 +20,6 @@ async function userLogIn(e) {
   } catch (error) {
     console.log(error.message);
   }
-}
-
-async function onLogout() {
-  const userSignOut = await auth.signOut();
 }
 
 monitorAuthState();

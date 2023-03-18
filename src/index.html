@@ -8,16 +8,27 @@
     <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <div class="header-wrapper">
+    <div class="header-wrapper show">
       <div class="header">
-        <button id="tmdb" type="button">Get Key</button>
+        <button class="button" id="tmdb" type="button">Get Key</button>
         <div class="loginState"></div>
         <div class="ui-wrapper">
-          <a href="./partials/login.html">LogIn</a>
-          <a href="./partials/signup.html">Signup</a>
+          <div class="login-signup hidden">
+            <a href="./partials/login.html">LogIn</a>
+            <a href="./partials/signup.html">Signup</a>
+          </div>
+          <button class="button hidden" id="logout" type="button">
+            Logout
+          </button>
         </div>
       </div>
     </div>
+    <section>
+      <div class="content-item"></div>
+      <div class="content-item"></div>
+      <div class="content-item"></div>
+      <div class="content-item"></div>
+    </section>
     <!-- ❗️❗️❗️ Add partials like so for every page -->
     <!-- <include src="./partials/example.html"></include> -->
   </body>

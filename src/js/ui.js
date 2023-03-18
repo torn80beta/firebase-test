@@ -3,8 +3,10 @@ import { onAuthStateChanged } from 'firebase/auth';
 const loginStateEl = document.querySelector('.loginState');
 
 function showLoginState(user) {
-  loginStateEl.innerHTML = `<p><b>You are logged in as:</b> ${user.displayName}</p>
-  <p><b>userID:</b> ${user.uid}</p>
+  // Additional info. Just paste in to innerHTML
+  // <p><b>You are logged in as:</b> ${user.displayName}</p>
+  // <p><b>userID:</b> ${user.uid}</p>
+  loginStateEl.innerHTML = `
   <p><b>email:</b> ${user.email}</p>`;
 }
 

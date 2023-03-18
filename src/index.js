@@ -60,3 +60,32 @@ function onScroll(e) {
     headerWrapperEl.classList.add('show');
   }
 }
+
+/* News */
+
+import { NEWS_API_KEY } from './js/news_api/news-api-key';
+const BASE_URL = 'https://newsapi.org/v2';
+
+// const queryOptions = {
+//   q: 'usa',
+//   category: 'politics',
+//   language: 'en',
+//   country: 'us',
+// };
+
+export async function getNews() {
+  try {
+    const news = await instance
+      .get(`${BASE_URL}/everything?q=bitcoin&apiKey=${NEWS_API_KEY}`)
+      .then(response => {
+        if (response.status) {
+          console.log(response.data.articles);
+        }
+      });
+    return news;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+getNews();

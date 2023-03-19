@@ -53,7 +53,7 @@ function setupScrollListener() {
 
 function onScroll(e) {
   const scrollOffset = window.scrollY;
-  console.log(scrollOffset);
+  // console.log(scrollOffset);
   if (scrollOffset >= scrollBreakpoint) {
     headerWrapperEl.classList.remove('show');
   } else if (scrollOffset <= 0) {
@@ -89,3 +89,7 @@ export async function getNews() {
 }
 
 // getNews();
+
+class createUrl {
+  constructor() {}
+}

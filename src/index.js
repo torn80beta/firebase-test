@@ -4,7 +4,7 @@ import axios from 'axios';
 var throttle = require('lodash.throttle');
 
 export const instance = axios.create({
-  baseURL: 'https://api.themoviedb.org/3/',
+  // baseURL: 'https://newsapi.org/v2',
   timeout: 1000,
 });
 // const TMDB_API_KEY = '2312830e6f848d2a7194ede59058ec48';
@@ -78,7 +78,7 @@ class urlCreator {
     this.pageSize = 20;
     this.page = 1;
     this.refs = this.getRefs();
-    this.BASE_URL = 'https://newsapi.org/v2';
+    this.BASE_URL = 'https://newsapi.org/v2/top-headlines';
     this.NEWS_API_KEY = '3d3bea3840ae4bf7980f0e636498eec6';
   }
 
@@ -89,7 +89,6 @@ class urlCreator {
     refs.category = document.getElementById('searchForm').category;
     refs.dateFrom = document.getElementById('searchForm').dateFrom;
     refs.dateTo = document.getElementById('searchForm').dateTo;
-    // refs.submitButton = document.getElementById('submitButton');
     return refs;
   }
 
@@ -100,37 +99,28 @@ class urlCreator {
     const to = this.refs.dateTo.value;
     const page = this.page;
     const pageSize = this.pageSize;
-    const url = `${this.BASE_URL}/everything?category=${category}&q=${query}&from=${from}&to=${to}&pageSize=${pageSize}&page=${page}&apiKey=${NEWS_API_KEY}`;
+    const url = `${this.BASE_URL}?category=${category}&q=${query}&from=${from}&to=${to}&pageSize=${pageSize}&page=${page}&apiKey=${this.NEWS_API_KEY}`;
     return url;
   }
 }
 
-const createUrl = new urlCreator();
+const urlGetter = new urlCreator();
 
 function onSearch(e) {
   e.preventDefault();
-  const url = createUrl.getUrl();
-  console.log(url);
-  getNews(url);
+  console.log(urlGetter.getUrl());
+  getNews(urlGetter.getUrl());
 }
 
 async function getNews(url) {
   try {
-    const news = await instance
-      .get(url)
-      // .get(`${BASE_URL}/everything?q=bitcoin&apiKey=${NEWS_API_KEY}`)
-      .then(response => {
-        if (response.status) {
-          console.log(response.data.articles);
-        }
-      });
+    const news = await instance.get(url).then(response => {
+      if (response.status) {
+        console.log(response.data.articles);
+      }
+    });
     return news;
   } catch (error) {
     console.log(error);
   }
 }
-
-// getNews();
-
-// console.log(createUrl.refs);
-// console.log(createUrl.getUrl());

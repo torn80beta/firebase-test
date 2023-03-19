@@ -22,3 +22,23 @@ export async function getNews(newsApi) {
     });
   return news;
 }
+
+// export async function getNews(newsApi) {
+//   const news = await newsApi.v2
+//     .topHeadlines({
+//       q: 'trump',
+//       category: 'politics',
+//       language: 'en',
+//       country: 'us',
+//     })
+//     .then(response => {
+//       console.log(response);
+//       /*
+//     {
+//       status: "ok",
+//       articles: [...]
+//     }
+//   */
+//     });
+//   return news;
+// }

@@ -12,9 +12,11 @@ const firebaseConfig = {
   storageBucket: 'fir-test-4ec8b.appspot.com',
   messagingSenderId: '941413940221',
   appId: '1:941413940221:web:19b2f749a8bacf86113794',
+  databaseURL:
+    'https://fir-test-4ec8b-default-rtdb.europe-west1.firebasedatabase.app/',
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);

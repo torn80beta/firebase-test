@@ -124,3 +124,42 @@ async function getNews(url) {
     console.log(error);
   }
 }
+
+/* Firebase Realtime Storage test */
+import { app } from './js/firebase';
+import { getDatabase, ref, set, child, get } from 'firebase/database';
+
+// Initialize Realtime Database and get a reference to the service
+const database = getDatabase(app);
+
+// console.log(database);
+
+async function writeUserData(userId, name, email) {
+  const db = getDatabase();
+  const data = await set(ref(db, 'users/' + userId), {
+    username: name,
+    email: email,
+    // profile_picture: imageUrl,
+  });
+  console.log(data);
+  return data;
+}
+
+// writeUserData('123123', 'user1', 'user1@gmail.com');
+
+async function getUserData(userId) {
+  const dbRef = ref(getDatabase());
+  const data = await get(child(dbRef, `users/${userId}`))
+    .then(snapshot => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+      } else {
+        console.log('No data available');
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
+getUserData('123123');

@@ -171,7 +171,7 @@ async function getUserData(userId) {
     });
 }
 
-getUserData('222222');
+getUserData('EDq5F6DUsYcKAwA1RL4VVYbaWkk2');
 
 function writeNewPost(uid, username, picture, title, body) {
   const db = getDatabase();
@@ -191,10 +191,16 @@ function writeNewPost(uid, username, picture, title, body) {
 
   // Write the new post's data simultaneously in the posts list and the user's post list.
   const updates = {};
-  updates['/news/' + newPostKey] = postData;
+  // updates['/news/' + newPostKey] = postData;
   updates['/user-news/' + uid + '/' + newPostKey] = postData;
 
   return update(ref(db), updates);
 }
 
-// writeNewPost('222222', 'user2', 'News picture', 'News title', 'News body');
+// writeNewPost(
+//   'EDq5F6DUsYcKAwA1RL4VVYbaWkk2',
+//   'Anonymous User',
+//   'News picture 2',
+//   'News title 2',
+//   'News body 2'
+// );

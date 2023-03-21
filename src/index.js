@@ -127,7 +127,15 @@ async function getNews(url) {
 
 /* Firebase Realtime Storage test */
 import { app } from './js/firebase';
-import { getDatabase, ref, set, child, get } from 'firebase/database';
+import {
+  getDatabase,
+  ref,
+  set,
+  child,
+  get,
+  push,
+  update,
+} from 'firebase/database';
 
 // Initialize Realtime Database and get a reference to the service
 const database = getDatabase(app);
@@ -145,11 +153,12 @@ async function writeUserData(userId, name, email) {
   return data;
 }
 
+// writeUserData('222222', 'user2', 'user2@gmail.com');
 // writeUserData('123123', 'user1', 'user1@gmail.com');
 
 async function getUserData(userId) {
   const dbRef = ref(getDatabase());
-  const data = await get(child(dbRef, `users/${userId}`))
+  const data = await get(child(dbRef, `user-news/${userId}`))
     .then(snapshot => {
       if (snapshot.exists()) {
         console.log(snapshot.val());
@@ -162,4 +171,30 @@ async function getUserData(userId) {
     });
 }
 
-getUserData('123123');
+getUserData('222222');
+
+function writeNewPost(uid, username, picture, title, body) {
+  const db = getDatabase();
+
+  // A post entry.
+  const postData = {
+    author: username,
+    uid: uid,
+    body: body,
+    title: title,
+    starCount: 0,
+    authorPic: picture,
+  };
+
+  // Get a key for a new Post.
+  const newPostKey = push(child(ref(db), 'news')).key;
+
+  // Write the new post's data simultaneously in the posts list and the user's post list.
+  const updates = {};
+  updates['/news/' + newPostKey] = postData;
+  updates['/user-news/' + uid + '/' + newPostKey] = postData;
+
+  return update(ref(db), updates);
+}
+
+// writeNewPost('222222', 'user2', 'News picture', 'News title', 'News body');
